@@ -1,0 +1,49 @@
+<!-- Si NO hay profesional seleccionado, muestra la lista -->
+<div *ngIf="!profesional">
+  <div class="profesionales-lista">
+    <div *ngFor="let profesional of profesionalesFiltrados" class="profesional-card">
+      <img [src]="profesional.imagen" alt="{{ profesional.nombre }}" class="profesional-img">
+      <div class="profesional-info">
+        <div class="profesional-nombre">{{ profesional.nombre | nombrePropio }}</div>
+        <div class="profesional-especialidad">{{ profesional.especialidad }}</div>
+      </div>
+      <button 
+        [routerLink]="['/profesional-detail', profesional.id]" 
+        class="btn-contactar">
+        Ver detalles
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Si hay profesional seleccionado, muestra los detalles -->
+<div *ngIf="profesional" class="card">
+  <div class="card-body text-center">
+    <img [src]="profesional.imagen" alt="{{ profesional.nombre }}" class="rounded-circle mb-3">
+    <h5 class="card-title">{{ profesional.nombre | nombrePropio }}</h5>
+    <p class="card-text">
+      <strong>Especialidad:</strong>
+      <span class="text-primary">{{ profesional.especialidad }}</span>
+    </p>
+    <p class="card-text">
+      <strong>Honorarios:</strong>
+      <span class="text-success">{{ profesional.honorarios | currency }}</span>
+    </p>
+    <p class="card-text" *ngIf="profesional.experiencia">
+      <strong>Experiencia:</strong>
+      <span>{{ profesional.experiencia }}</span>
+    </p>
+    <p class="card-text" *ngIf="profesional.correo">
+      <strong>Correo:</strong>
+      <span>{{ profesional.correo }}</span>
+    </p>
+    <p class="card-text" *ngIf="profesional.telefono">
+      <strong>Teléfono:</strong>
+      <span>{{ profesional.telefono }}</span>
+    </p>
+    <p class="card-text" *ngIf="profesional.ubicacion">
+      <strong>Ubicación:</strong>
+      <span>{{ profesional.ubicacion }}</span>
+    </p>
+  </div>
+</div>

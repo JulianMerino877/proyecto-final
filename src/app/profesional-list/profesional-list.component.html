@@ -1,0 +1,16 @@
+<h2>Profesionales disponibles</h2>
+<div class="profesionales-lista">
+  <div 
+    *ngFor="let profesional of profesionalesFiltrados" 
+    class="profesional-card" 
+    [class.selected]="profesionalSeleccionado === profesional"
+    (click)="seleccionarProfesional(profesional)">
+    <img [src]="profesional.imagen || 'icons/default.png'" alt="{{ profesional.nombre }}" class="profesional-img">
+    <div class="profesional-info">
+      <div class="profesional-nombre">{{ profesional.nombre | nombrePropio }}</div>
+      <div class="profesional-especialidad">{{ profesional.especialidad }}</div>
+      
+    </div>
+    <!-- El botón Contactar ha sido eliminado de aquí -->
+  </div>
+</div>

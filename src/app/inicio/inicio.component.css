@@ -1,0 +1,11 @@
+.bienvenida-contenido {
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
+  text-align: center; /* Centra el texto dentro del contenedor */
+  position: absolute; /* Posiciona el contenedor de forma absoluta */
+  top: 50%; /* Posiciona el contenedor al 50% desde arriba */
+  left: 50%; /* Posiciona el contenedor al 50% desde la izquierda */
+  transform: translate(-50%, -50%); /* Ajusta el contenedor para que esté perfectamente centrado */
+}

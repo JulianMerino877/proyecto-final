@@ -1,0 +1,34 @@
+<div class="formulario-container">
+  <h2>Agregar Profesional</h2>
+  <form (ngSubmit)="agregarProfesional()" #form="ngForm">
+    <label>Foto:</label>
+    <input type="file" (change)="onFileChange($event)" accept="image/*" />
+    <div *ngIf="imagenPreview">
+      <img [src]="imagenPreview" alt="Preview" class="preview-img" />
+    </div>
+
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="nuevoProfesional.nombre" name="nombre" required class="form-input" />
+
+    <label>Especialidad:</label>
+    <input type="text" [(ngModel)]="nuevoProfesional.especialidad" name="especialidad" required class="form-input" />
+
+    <label>Honorarios:</label>
+    <input type="number" [(ngModel)]="nuevoProfesional.honorarios" name="honorarios" required class="form-input" />
+
+    <label>Experiencia:</label>
+    <input type="text" [(ngModel)]="nuevoProfesional.experiencia" name="experiencia" class="form-input" />
+
+    <label>Correo:</label>
+    <input type="email" [(ngModel)]="nuevoProfesional.correo" name="correo" class="form-input" />
+
+    <label>Teléfono:</label>
+    <input type="text" [(ngModel)]="nuevoProfesional.telefono" name="telefono" class="form-input" />
+
+    <label>Ubicación:</label>
+    <input type="text" [(ngModel)]="nuevoProfesional.ubicacion" name="ubicacion" class="form-input" />
+
+    <button type="submit" class="btn-enviar">Agregar</button>
+  </form>
+  <div *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</div>
+</div>

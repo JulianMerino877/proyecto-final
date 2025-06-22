@@ -1,0 +1,17 @@
+<ng-container *ngIf="!esRutaFormulario(); else soloOutlet">
+  <h2 class="main-title">Contacto con Profesional</h2>
+  <div class="profesionales-lista">
+    <div *ngFor="let prof of profesionales" class="profesional-card">
+      <img [src]="prof.imagen || 'icons/default.png'" alt="{{ prof.nombre }}" class="profesional-img">
+      <div class="profesional-info">
+        <div class="profesional-nombre">{{ prof.nombre | nombrePropio }}</div>
+        <div class="profesional-especialidad">{{ prof.especialidad }}</div>
+        
+      </div>
+      <button [routerLink]="['formulario', prof.id]" class="btn-contactar">Contactar</button>
+    </div>
+  </div>
+</ng-container>
+<ng-template #soloOutlet>
+  <router-outlet></router-outlet>
+</ng-template>

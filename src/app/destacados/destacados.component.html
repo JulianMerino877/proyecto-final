@@ -1,0 +1,17 @@
+<div *ngIf="destacados.length > 0; else noDestacados">
+  <h2>Profesionales destacados</h2>
+  <div class="profesionales-lista">
+    <div 
+      *ngFor="let profesional of destacados" 
+      class="profesional-card">
+      <img [src]="profesional.imagen || 'icons/default.png'" alt="{{ profesional.nombre }}" class="profesional-img">
+      <div class="profesional-info">
+        <div class="profesional-nombre">{{ profesional.nombre | nombrePropio }}</div>
+        <div class="profesional-especialidad">{{ profesional.especialidad }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noDestacados>
+  <p>No existen profesionales destacados.</p>
+</ng-template>
