@@ -5,7 +5,6 @@ import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NombrePropioPipe } from '../nombre-propio.pipe';
 
-
 @Component({
   selector: 'app-profesional-list',
   standalone: true,
@@ -16,12 +15,14 @@ import { NombrePropioPipe } from '../nombre-propio.pipe';
 export class profesionalListComponent implements OnInit {
   @Input() profesionales: profesional[] = [];
   searchText: string = '';
-  profesionalSeleccionado: profesional | null = null; // Nueva propiedad para manejar la selección
+  profesionalSeleccionado: profesional | null = null;
 
   constructor(private profesionalService: profesionalService) {}
 
-  async ngOnInit() {
-    this.profesionales = await this.profesionalService.getProfesionales();
+  ngOnInit() {
+    this.profesionalService.getProfesionales().subscribe(data => {
+      this.profesionales = data;
+    });
   }
 
   get profesionalesFiltrados(): profesional[] {
@@ -32,8 +33,6 @@ export class profesionalListComponent implements OnInit {
   }
 
   seleccionarProfesional(profesional: profesional) {
-    this.profesionalSeleccionado = profesional; // Actualiza la selección
+    this.profesionalSeleccionado = profesional;
   }
-
-  
 }

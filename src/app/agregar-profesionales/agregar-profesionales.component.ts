@@ -40,14 +40,12 @@ export class AgregarProfesionalesComponent {
   }
 
   async agregarProfesional() {
-    // Generar un id único (simple)
-    this.nuevoProfesional.id = Date.now().toString();
     // Si no hay imagen, poner una por defecto
     if (!this.nuevoProfesional.imagen) {
       this.nuevoProfesional.imagen = 'icons/default.png';
     }
-    // Agregar a la lista (en memoria)
-    this.profesionalService.profesionales.push({ ...this.nuevoProfesional });
+    // Guardar en Firestore
+    await this.profesionalService.addProfesional({ ...this.nuevoProfesional });
     this.mensaje = '¡Profesional agregado exitosamente!';
     // Limpiar formulario
     this.nuevoProfesional = {

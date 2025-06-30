@@ -19,8 +19,9 @@ export class DestacadosComponent {
     this.cargarDestacados();
   }
 
-  async cargarDestacados() {
-    const profesionales = await this.profesionalService.getProfesionales();
-    this.destacados = profesionales.filter(prof => prof.honorarios > this.minHonorarios);
+  cargarDestacados() {
+    this.profesionalService.getProfesionales().subscribe(profesionales => {
+      this.destacados = profesionales.filter(prof => prof.honorarios > this.minHonorarios);
+    });
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Firestore, collection, collectionData, addDoc, doc, docData, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { profesional } from '../models/profesional';
 
@@ -6,23 +7,35 @@ import { profesional } from '../models/profesional';
   providedIn: 'root'
 })
 export class profesionalService {
+  constructor(private firestore: Firestore) {}
 
-  constructor() { }
-
-  // ...código existente...
-profesionales: profesional[] = [
-    { id: "1", nombre: 'juan', especialidad: 'Literatura', honorarios: 1000, imagen: 'icons/juan.png', experiencia: '5 años', correo: 'juan@mail.com', telefono: '555-1234', ubicacion: 'Andahuaylas' },
-    { id: "2", nombre: 'maria', especialidad: 'Matemáticas', honorarios: 1200, imagen: 'icons/maria.png', experiencia: '8 años', correo: 'maria@mail.com', telefono: '555-5678', ubicacion: 'Cuzco' },
-    { id: "3", nombre: 'pedro', especialidad: 'Ciencias', honorarios: 800, imagen: 'icons/pedro.png', experiencia: '3 años', correo: 'pedro@mail.com', telefono: '555-9012', ubicacion: 'Lima' }
-];
-// ...código existente...
-
-  getProfesionales(): Promise<profesional[]> {
-    return Promise.resolve(this.profesionales);
+  // Obtener todos los profesionales (observable en tiempo real)
+  getProfesionales(): Observable<profesional[]> {
+    const ref = collection(this.firestore, 'profesionales');
+    return collectionData(ref, { idField: 'id' }) as Observable<profesional[]>;
   }
 
-  getProfesionalById(id: string | null): Promise<profesional | undefined> {
-    return Promise.resolve(this.profesionales.find((profesional) => profesional.id === id));
+  // Agregar un profesional
+  addProfesional(prof: profesional) {
+    const ref = collection(this.firestore, 'profesionales');
+    return addDoc(ref, prof);
   }
-  
+
+  // Obtener un profesional por ID (observable en tiempo real)
+  getProfesionalById(id: string): Observable<profesional> {
+    const ref = doc(this.firestore, 'profesionales', id);
+    return docData(ref, { idField: 'id' }) as Observable<profesional>;
+  }
+
+  // Actualizar un profesional
+  updateProfesional(id: string, data: Partial<profesional>) {
+    const ref = doc(this.firestore, 'profesionales', id);
+    return updateDoc(ref, data);
+  }
+
+  // Eliminar un profesional
+  deleteProfesional(id: string) {
+    const ref = doc(this.firestore, 'profesionales', id);
+    return deleteDoc(ref);
+  }
 }

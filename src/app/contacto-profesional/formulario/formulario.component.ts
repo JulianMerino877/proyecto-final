@@ -20,9 +20,14 @@ export class FormularioComponent implements OnInit {
     private profesionalService: profesionalService
   ) {}
 
-  async ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.profesional = await this.profesionalService.getProfesionalById(id);
-    this.notFound = !this.profesional;
-  }
+  ngOnInit() {
+  const id = this.route.snapshot.paramMap.get('id');
+  if (id) {
+    this.profesionalService.getProfesionalById(id).subscribe(profesional => {
+      this.profesional = profesional;
+      this.notFound = !this.profesional;
+    });
+  } else {
+    this.notFound = true;
+  }}
 }

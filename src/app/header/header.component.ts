@@ -1,20 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { profesionalService } from '../services/profesional.service';
-import { NgFor } from '@angular/common';
+import { AuthService } from '../services/auth.service';
+import { NgIf,CommonModule} from '@angular/common';
+
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgIf, CommonModule],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'] // <--- aquí el cambio
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
   profesionales: any[] = [];
 
-  constructor(private profesionalService: profesionalService) {}
+  constructor(
+    private profesionalService: profesionalService,
+    public authService: AuthService,
+    private router: Router
+  ) {}
 
-  async ngOnInit() {
-    this.profesionales = await this.profesionalService.getProfesionales();
+  ngOnInit() {
+    this.profesionalService.getProfesionales().subscribe(profesionales => {
+      this.profesionales = profesionales;
+    });
+  }
+
+  onLogout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['/login']);
+    });
   }
 }

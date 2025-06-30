@@ -17,9 +17,12 @@ export class MensajeEnviadoComponent implements OnInit {
     private profesionalService: profesionalService
   ) {}
 
-  async ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    const profesional = await this.profesionalService.getProfesionalById(id);
-    this.nombreProfesional = profesional ? profesional.nombre : '';
+  ngOnInit() {
+  const id = this.route.snapshot.paramMap.get('id');
+  if (id) {
+    this.profesionalService.getProfesionalById(id).subscribe(profesional => {
+      this.nombreProfesional = profesional ? profesional.nombre : '';
+    });
   }
+}
 }

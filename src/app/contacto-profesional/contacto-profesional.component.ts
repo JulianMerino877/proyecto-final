@@ -21,8 +21,10 @@ export class ContactoProfesionalComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  async ngOnInit() {
-    this.profesionales = await this.profesionalService.getProfesionales();
+  ngOnInit() {
+    this.profesionalService.getProfesionales().subscribe((profesionales) => {
+      this.profesionales = profesionales;
+    });
   }
 
   esRutaFormulario(): boolean {

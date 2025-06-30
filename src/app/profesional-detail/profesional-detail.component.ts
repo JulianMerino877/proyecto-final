@@ -23,20 +23,22 @@ export class profesionalDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Si quieres cargar todos los profesionales filtrados (por ejemplo, para mostrar una lista relacionada)
-    this.profesionalService.getProfesionales()
-      .then((profesionales) => {
+    // Cargar todos los profesionales filtrados (si lo necesitas)
+    this.profesionalService.getProfesionales().subscribe({
+      next: (profesionales) => {
         this.profesionalesFiltrados = profesionales;
-      })
-      .catch(error => console.error('Error al obtener los profesionales:', error));
+      },
+      error: (error) => console.error('Error al obtener los profesionales:', error)
+    });
 
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.profesionalService.getProfesionalById(id)
-        .then((prof) => {
+      this.profesionalService.getProfesionalById(id).subscribe({
+        next: (prof) => {
           this.profesional = prof;
-        })
-        .catch(error => console.error('Error al obtener el profesional:', error));
+        },
+        error: (error) => console.error('Error al obtener el profesional:', error)
+      });
     }
   }
 }

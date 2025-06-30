@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
 import { DestacadosComponent } from './destacados/destacados.component';
-
+import { authGuard } from './guards/auth.guard';
 export const routes: Routes = [
   { path: '', redirectTo: '/profesional-list', pathMatch: 'full' },
   {
@@ -46,7 +46,16 @@ export const routes: Routes = [
   {
     path: 'agregar-profesionales',
     loadComponent: () => import('./agregar-profesionales/agregar-profesionales.component').then(m => m.AgregarProfesionalesComponent)
-  }
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent) 
+  },
+  
 ];
 
 export const AppRoutingModule = RouterModule.forRoot(routes);

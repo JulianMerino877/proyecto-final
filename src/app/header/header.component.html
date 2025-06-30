@@ -1,4 +1,3 @@
-
 <header class="main-header">
   <div class="logo">
     <span class="logo-icon">D</span>
@@ -10,8 +9,15 @@
     <a [routerLink]="['/destacados']">Destacados</a>
     <a [routerLink]="['/contacto-profesional']">Contacto</a>
     <a [routerLink]="['/profesional-detail']">Detalles</a>
-    <a [routerLink]="['/agregar-profesionales']">Agregar</a>
+    <a [routerLink]="['/agregar-profesionales']" *ngIf="(authService.authState$ | async)">Agregar</a>
+    <ng-container *ngIf="(authService.authState$ | async) as user; else sinSesion">
+      <span style="margin-left:16px;">
+        {{ user.displayName || user.email }} |
+        <a href="#" (click)="onLogout()">Salir</a>
+      </span>
+    </ng-container>
+    <ng-template #sinSesion>
+      <a [routerLink]="['/login']" style="margin-left:16px;">Login</a>
+    </ng-template>
   </nav>
 </header>
-
-
