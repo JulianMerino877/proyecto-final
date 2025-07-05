@@ -1,0 +1,141 @@
+h2 {
+  color: #2d3a4b;
+  margin-bottom: 18px;
+}
+h3 {
+  color: #1976d2;
+  margin-top: 18px;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+li {
+  padding: 4px 0;
+  font-size: 1.05rem;
+}
+.categoria-carpeta {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #e3e6f7;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 12px 0 4px 0;
+  transition: background 0.2s;
+}
+.categoria-carpeta:hover {
+  background: #d0d6f0;
+}
+.icon-carpeta {
+  font-size: 2.2rem;
+  margin-right: 16px;
+}
+.nombre-categoria {
+  font-size: 1.3rem;
+}
+.profesional-link {
+  font-size: 1.1rem;
+  color: #1976d2;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+.profesional-link:hover {
+  text-decoration: underline;
+}
+.categorias-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 24px;
+  justify-content: flex-start;
+}
+.categoria-card-color {
+  background: linear-gradient(135deg, #e3d7ff 60%, #c1a3f7 100%);
+  border: 2px solid #a259e6;
+  border-radius: 22px;
+  padding: 18px 32px 10px 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px rgba(162, 89, 230, 0.07);
+  min-width: 260px;
+  max-width: 320px;
+  flex: 1 1 260px;
+  margin-bottom: 12px;
+}
+.categoria-card-color:hover {
+  box-shadow: 0 4px 16px rgba(162, 89, 230, 0.18);
+  border-color: #7c3aed;
+  background: linear-gradient(135deg, #d1bfff 60%, #b48cf7 100%);
+}
+.icono-categoria img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
+}
+.nombre-categoria {
+  font-size: 1.3rem;
+  color: #7c3aed;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.profesionales-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 24px;
+}
+.profesional-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 20px;
+  min-width: 220px;
+  max-width: 240px;
+  flex: 1 1 220px;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.profesional-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.profesional-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #1976d2;
+  background: #e0e0e0;
+}
+.profesional-info {
+  text-align: center;
+}
+.profesional-nombre {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 4px;
+}
+.profesional-especialidad {
+  color: #1976d2;
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+.profesional-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+.profesional-actions button,
+.profesional-actions a {
+  margin: 0;
+}

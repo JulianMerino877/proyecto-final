@@ -1,23 +1,41 @@
-<header class="main-header">
+<header class="main-header" style="background: #4856b8;">
   <div class="logo">
-    <span class="logo-icon">D</span>
+    <img src="icons/logo.jpg" alt="Logo Directorio" class="logo-img" style="width: 48px; height: 48px; margin-right: 12px; display: inline-block; vertical-align: middle;">
     <span class="logo-title">Directorio de <strong>Profesionales</strong></span>
   </div>
   <nav class="main-nav">
-    <a [routerLink]="['/inicio']">Inicio</a>
-    <a [routerLink]="['/profesional-list']">Profesionales</a>
-    <a [routerLink]="['/destacados']">Destacados</a>
-    <a [routerLink]="['/contacto-profesional']">Contacto</a>
-    <a [routerLink]="['/profesional-detail']">Detalles</a>
-    <a [routerLink]="['/agregar-profesionales']" *ngIf="(authService.authState$ | async)">Agregar</a>
+    <a [routerLink]="['/inicio']" routerLinkActive="active-link">
+      <span class="nav-icon">🏠</span> Inicio
+    </a>
+    <a [routerLink]="['/profesional-list']" routerLinkActive="active-link">
+      <span class="nav-icon">👨‍⚕️</span> Profesionales
+    </a>
+    <a [routerLink]="['/destacados']" routerLinkActive="active-link">
+      <span class="nav-icon">🌟</span> Destacados
+    </a>
+    <a [routerLink]="['/categoria-profesional']" routerLinkActive="active-link">
+      <span class="nav-icon">📂</span> Categoría
+    </a>
+    <!--
+    <a [routerLink]="['/contacto-profesional']" routerLinkActive="active-link">
+      <span class="nav-icon">✉️</span> Contacto
+    </a>
+    <a [routerLink]="['/profesional-detail']" routerLinkActive="active-link">
+      <span class="nav-icon">🔍</span> Detalles
+    </a>
+    -->
+    <a [routerLink]="['/agregar-profesionales']" routerLinkActive="active-link" *ngIf="(authService.authState$ | async)">
+      <span class="nav-icon">➕</span> Agregar
+    </a>
     <ng-container *ngIf="(authService.authState$ | async) as user; else sinSesion">
-      <span style="margin-left:16px;">
-        {{ user.displayName || user.email }} |
-        <a href="#" (click)="onLogout()">Salir</a>
-      </span>
+      <a [routerLink]="['/perfil']" class="perfil-link" style="margin-left:18px; display: flex; align-items: center;">
+        <span class="nav-icon">👤</span> Mi Perfil
+      </a>
     </ng-container>
     <ng-template #sinSesion>
-      <a [routerLink]="['/login']" style="margin-left:16px;">Login</a>
+      <a [routerLink]="['/login']" class="perfil-link" style="margin-left:18px; display: flex; align-items: center;">
+        <span class="nav-icon">🔑</span> Iniciar Sesion
+      </a>
     </ng-template>
   </nav>
 </header>

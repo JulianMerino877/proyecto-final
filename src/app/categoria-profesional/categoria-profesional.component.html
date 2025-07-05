@@ -1,0 +1,9 @@
+<h2>Categorías de Profesionales</h2>
+<div class="categorias-grid">
+  <div *ngFor="let categoria of categorias | keyvalue" class="categoria-card-color" (click)="irACategoria(categoria.key)">
+    <div class="icono-categoria">
+      <img [src]="getIconoCategoria(categoria.key)" alt="icono {{categoria.key}}" />
+    </div>
+    <div class="nombre-categoria">{{ categoria.key }}</div>
+  </div>
+</div>

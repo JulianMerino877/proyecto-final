@@ -1,0 +1,14 @@
+<div class="perfil-container">
+  <h2>Mi Cuenta</h2>
+  <div *ngIf="user$ | async as user">
+    <div class="perfil-info">
+      <span class="perfil-icon">👤</span>
+      <div>
+        <p class="perfil-email"><strong>{{ user.email }}</strong></p>
+        <p *ngIf="user.displayName"><strong>Nombre:</strong> {{ user.displayName }}</p>
+      </div>
+    </div>
+    <hr>
+    <button class="perfil-logout" (click)="onLogout()">Salir</button>
+  </div>
+</div>

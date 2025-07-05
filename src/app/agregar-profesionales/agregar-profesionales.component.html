@@ -25,6 +25,9 @@
     <label>Ubicación:</label>
     <input type="text" [(ngModel)]="nuevoProfesional.ubicacion" name="ubicacion" class="form-input" />
 
+    <label>Teléfono:</label>
+    <input type="tel" [(ngModel)]="nuevoProfesional.telefono" name="telefono" class="form-input" placeholder="Ej: 51999999999" required />
+
     <button type="submit" class="btn-enviar">Agregar</button>
   </form>
   <div *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</div>

@@ -1,17 +1,12 @@
-<h2>Profesionales disponibles</h2>
+<h2>Profesionales de {{ categoria | nombrePropio }}</h2>
 <div class="profesionales-lista">
-  <div 
-    *ngFor="let profesional of profesionalesFiltrados" 
-    class="profesional-card" 
-    [class.selected]="profesionalSeleccionado === profesional">
+  <div *ngFor="let profesional of profesionales" class="profesional-card">
     <img [src]="profesional.imagen || 'icons/default.png'" alt="{{ profesional.nombre }}" class="profesional-img">
     <div class="profesional-info">
       <div class="profesional-nombre">{{ profesional.nombre | nombrePropio }}</div>
       <div class="profesional-especialidad">{{ profesional.especialidad }}</div>
       <div class="profesional-actions">
-        <button 
-          [disabled]="!profesional.telefono" 
-          (click)="abrirWhatsApp(profesional, $event)">
+        <button [disabled]="!profesional.telefono" (click)="$event.stopPropagation(); abrirWhatsApp(profesional, $event)">
           <img src="icons/whatsapp.svg" alt="WhatsApp" style="width: 22px; height: 22px; vertical-align: middle; margin-right: 6px;"> WhatsApp
         </button>
         <a [routerLink]="['/profesional-detail', profesional.id]">

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "catalogo-libros": {
+    "directorio-profesionales": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/catalogo-libros",
+            "outputPath": "dist/directorio-profesionales",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "catalogo-libros:build:production"
+              "buildTarget": "directorio-profesionales:build:production"
             },
             "development": {
-              "buildTarget": "catalogo-libros:build:development"
+              "buildTarget": "directorio-profesionales:build:development"
             }
           },
           "defaultConfiguration": "development"

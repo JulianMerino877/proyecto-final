@@ -2,6 +2,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
 import { DestacadosComponent } from './destacados/destacados.component';
 import { authGuard } from './guards/auth.guard';
+import { PerfilComponent } from './perfil/perfil.component';
+
 export const routes: Routes = [
   { path: '', redirectTo: '/profesional-list', pathMatch: 'full' },
   {
@@ -30,20 +32,6 @@ export const routes: Routes = [
   { path: 'destacados', component: DestacadosComponent },
   { path: 'inicio', component: InicioComponent },
   {
-    path: 'contacto-profesional',
-    loadComponent: () => import('./contacto-profesional/contacto-profesional.component').then(m => m.ContactoProfesionalComponent),
-    children: [
-      {
-        path: 'formulario/:id',
-        loadComponent: () => import('./contacto-profesional/formulario/formulario.component').then(m => m.FormularioComponent)
-      },
-      {
-        path: 'mensaje-enviado/:id',
-        loadComponent: () => import('./contacto-profesional/mensaje-enviado/mensaje-enviado.component').then(m => m.MensajeEnviadoComponent)
-      }
-    ]
-  },
-  {
     path: 'agregar-profesionales',
     loadComponent: () => import('./agregar-profesionales/agregar-profesionales.component').then(m => m.AgregarProfesionalesComponent)
   },
@@ -55,7 +43,18 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent) 
   },
-  
+  {
+    path: 'perfil',
+    component: PerfilComponent
+  },
+  {
+    path: 'categoria-profesional',
+    loadComponent: () => import('./categoria-profesional/categoria-profesional.component').then(m => m.CategoriaProfesionalComponent)
+  },
+  {
+    path: 'categoria-profesional/:nombre',
+    loadComponent: () => import('./categoria-lista/categoria-lista.component').then(m => m.CategoriaListaComponent)
+  }
 ];
 
 export const AppRoutingModule = RouterModule.forRoot(routes);

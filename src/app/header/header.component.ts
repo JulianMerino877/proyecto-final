@@ -7,7 +7,7 @@ import { NgIf,CommonModule} from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, NgIf, CommonModule],
+  imports: [RouterLink, CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
