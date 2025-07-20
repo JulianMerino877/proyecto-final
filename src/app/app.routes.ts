@@ -3,6 +3,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { DestacadosComponent } from './destacados/destacados.component';
 import { authGuard } from './guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/profesional-list', pathMatch: 'full' },
@@ -54,6 +55,11 @@ export const routes: Routes = [
   {
     path: 'categoria-profesional/:nombre',
     loadComponent: () => import('./categoria-lista/categoria-lista.component').then(m => m.CategoriaListaComponent)
+  },
+  {
+    path: 'admin',
+    loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent),
+    canActivate: [adminGuard]
   }
 ];
 

@@ -16,22 +16,22 @@
     <a [routerLink]="['/categoria-profesional']" routerLinkActive="active-link">
       <span class="nav-icon">📂</span> Categoría
     </a>
-    <!--
-    <a [routerLink]="['/contacto-profesional']" routerLinkActive="active-link">
-      <span class="nav-icon">✉️</span> Contacto
-    </a>
-    <a [routerLink]="['/profesional-detail']" routerLinkActive="active-link">
-      <span class="nav-icon">🔍</span> Detalles
-    </a>
-    -->
+   
     <a [routerLink]="['/agregar-profesionales']" routerLinkActive="active-link" *ngIf="(authService.authState$ | async)">
       <span class="nav-icon">➕</span> Agregar
     </a>
+    <!-- Enlace al panel de administrador -->
+    <ng-container *ngIf="authService.currentUser?.email === adminEmail">
+      <a [routerLink]="['/admin']" routerLinkActive="active-link" class="perfil-link" style="margin-left:18px; display: flex; align-items: center;">
+        <span class="nav-icon">🛠️</span> Admin
+      </a>
+    </ng-container>
     <ng-container *ngIf="(authService.authState$ | async) as user; else sinSesion">
       <a [routerLink]="['/perfil']" class="perfil-link" style="margin-left:18px; display: flex; align-items: center;">
         <span class="nav-icon">👤</span> Mi Perfil
       </a>
     </ng-container>
+
     <ng-template #sinSesion>
       <a [routerLink]="['/login']" class="perfil-link" style="margin-left:18px; display: flex; align-items: center;">
         <span class="nav-icon">🔑</span> Iniciar Sesion

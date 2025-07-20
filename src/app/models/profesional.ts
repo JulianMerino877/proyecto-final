@@ -8,4 +8,5 @@ export interface profesional {
     correo?: string;
     telefono?: string;
     ubicacion?: string;
+    historial?: string;
 }

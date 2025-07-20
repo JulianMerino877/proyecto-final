@@ -130,3 +130,103 @@
   font-size: 1rem;
   margin-bottom: 2px;
 }
+
+/* Estilos para mostrar detalle en pantalla completa excepto header */
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  width: 100%;
+  margin: 0;
+}
+
+.detail-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-pic {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.historial {
+  flex: 1;
+  background: transparent;
+  font-size: 1.1rem;
+  text-align: justify;
+  line-height: 1.6;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.detail-body {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Estilos para la cuadrícula de información */
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: transparent;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.info-item {
+  flex: 1 1 200px;
+  background: transparent;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* Estilos para la sección de perfil: foto + nombre */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Override para eliminar espacio a la derecha */
+.detail-container {
+  align-items: flex-start;
+}
+
+.profile-name {
+  margin-top: 12px;
+  font-size: 1.8rem;
+  color: #222;
+}
+
+/* Contenedor principal: foto e historial alineados */
+.detail-container {
+  display: flex;
+  align-items: flex-end; /* Cambiado de flex-start a flex-end para bajar la foto */
+  gap: 2rem;
+}
+
+/* Foto del profesional */
+.detail-container .photo {
+  flex: 0 0 auto;
+}
+
+/* Sección de historial profesional */
+.detail-container .history {
+  flex: 1 1 auto;
+  text-align: left;
+}

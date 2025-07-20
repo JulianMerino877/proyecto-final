@@ -1,11 +1,35 @@
 <div class="register-container">
   <h2>Registrarse</h2>
-  <form (ngSubmit)="register()">
-    <input type="email" [(ngModel)]="email" name="email" placeholder="Correo" required />
-    <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required />
-    <button type="submit">Crear cuenta</button>
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <input formControlName="email" type="email" placeholder="Correo" />
+    <div class="error" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']">
+      El correo es requerido
+    </div>
+    <div class="error" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['email']">
+      Formato de correo inválido
+    </div>
+    <div class="error" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['emailTaken']">
+      Este correo ya está registrado
+    </div>
+
+    <input formControlName="password" type="password" placeholder="Contraseña" />
+    <div class="error" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']">
+      La contraseña es requerida
+    </div>
+    <div class="error" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['minlength']">
+      La contraseña debe tener al menos 6 caracteres
+    </div>
+
+    <input formControlName="confirmPassword" type="password" placeholder="Confirmar Contraseña" />
+    <div class="error" *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.errors?.['required']">
+      Es necesaria la confirmación de contraseña
+    </div>
+    <div class="error" *ngIf="registerForm.touched && registerForm.hasError('passwordMismatch')">
+      Las contraseñas no coinciden
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Crear cuenta</button>
     <div *ngIf="error" class="error">{{ error }}</div>
   </form>
-  <!-- ...formulario registro... -->
-<p>¿Ya tienes cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>
+  <p>¿Ya tienes cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>
 </div>

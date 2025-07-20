@@ -20,7 +20,7 @@ export class PerfilComponent {
 
   onLogout() {
     this.authService.logout().subscribe(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/inicio']);
     });
   }
 }

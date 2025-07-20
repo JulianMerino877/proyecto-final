@@ -5,10 +5,12 @@ import { profesionalService } from '../services/profesional.service';
 import { NgFor } from '@angular/common'; 
 import { NombrePropioPipe } from '../nombre-propio.pipe';// Asegúrate de importar el pipe si lo usas en la plantilla
 import { RouterLink, Router } from '@angular/router';
+import { PluralCategoriaPipe } from '../plural-categoria.pipe';
+
 @Component({
   selector: 'app-categoria-profesional',
   standalone: true,
-  imports: [CommonModule, NgFor],
+  imports: [CommonModule, NgFor, PluralCategoriaPipe],
   templateUrl: './categoria-profesional.component.html',
   styleUrls: ['./categoria-profesional.component.css']
 })
@@ -17,24 +19,21 @@ export class CategoriaProfesionalComponent {
   categoriaAbierta: string | null = null;
 
   iconos: { [key: string]: string } = {
-    'Médicos': 'assets/icons/medico.svg',
-    'Enfermeras': 'assets/icons/enfermera.svg',
-    'Odontólogos': 'assets/icons/odontologo.svg',
-    'Psicólogos': 'assets/icons/psicologo.svg',
-    'Nutricionistas': 'assets/icons/nutricionista.svg',
-    'Servicios de Salud': 'assets/icons/salud.svg',
-    'Restaurantes y Comidas': 'assets/icons/restaurante.svg',
-    'Spa y Belleza': 'assets/icons/spa.svg',
-    'Contadores': 'assets/icons/contador.svg',
-    'Fisioterapia y Rehabilitación': 'assets/icons/fisioterapia.svg',
-    'Hoteles': 'assets/icons/hotel.svg',
-    'Veterinarias': 'assets/icons/veterinaria.svg',
-    'Laboratorios Dentales': 'assets/icons/laboratorio.svg',
-    'Abogados': 'assets/icons/abogado.svg',
-    'Servicios Generales': 'assets/icons/servicio.svg',
-    'Inmobiliarias': 'assets/icons/inmobiliaria.svg',
-    'Otros': 'assets/icons/otros.svg'
-  };
+    'médico': '/assets/icons/medicos.svg',
+    'docente': '/assets/icons/docente.svg',
+    'psicólogo': '/assets/icons/Psicólogos.svg',
+    'psicóloga': '/assets/icons/Psicólogos.svg',
+    'Contador': '/assets/icons/Contador.svg',
+    'contadora': '/assets/icons/Contador.svg',
+    'contadores': '/assets/icons/Contador.svg',
+    'veterinaria': '/assets/icons/veterinaria.svg',
+    'veterinario': '/assets/icons/veterinaria.svg',
+    'Veterinario': '/assets/icons/veterinaria.svg',
+    'ingeniero': '/assets/icons/ingeniero.svg',
+    'ingeniera': '/assets/icons/ingeniero.svg',
+    'abogado': '/assets/icons/abogado.svg',
+    'abogada':'/assets/icons/abogado.svg',
+      };
 
   constructor(private profesionalService: profesionalService, private router: Router) {
     this.profesionalService.getProfesionales().subscribe(profesionales => {
@@ -51,8 +50,32 @@ export class CategoriaProfesionalComponent {
     }, {} as { [key: string]: profesional[] });
   }
 
+  /**
+   * Devuelve la ruta del icono según la categoría, normalizando tildes y singular/plural.
+   */
   getIconoCategoria(nombre: string): string {
-    return this.iconos[nombre] || this.iconos['Otros'];
+    const normalize = (s: string) =>
+      s.toLowerCase()
+       .normalize('NFD')
+       .replace(/\p{M}/gu, '');
+    const keyNorm = normalize(nombre);
+    // 1) Buscar coincidencia exacta
+    for (const [key, path] of Object.entries(this.iconos)) {
+      if (normalize(key) === keyNorm) {
+        return path;
+      }
+    }
+    // 2) Intentar singular (remover 'es' o 's')
+    let singular = keyNorm;
+    if (singular.endsWith('es')) singular = singular.slice(0, -2);
+    else if (singular.endsWith('s')) singular = singular.slice(0, -1);
+    for (const [key, path] of Object.entries(this.iconos)) {
+      if (normalize(key) === singular) {
+        return path;
+      }
+    }
+    // 3) Por defecto, icono 'otros'
+    return this.iconos['otros'] || '';
   }
 
   abrirWhatsApp(profesional: profesional, event: Event) {

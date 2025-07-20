@@ -16,30 +16,26 @@
   </div>
 </div>
 
-<!-- Si hay profesional seleccionado, muestra los detalles -->
-<div *ngIf="profesional" class="card">
-  <div class="card-body text-center">
-    <img [src]="profesional.imagen" alt="{{ profesional.nombre }}" class="rounded-circle mb-3">
-    <h5 class="card-title">{{ profesional.nombre | nombrePropio }}</h5>
-    <p class="card-text">
-      <strong>Especialidad:</strong>
-      <span class="text-primary">{{ profesional.especialidad }}</span>
-    </p>
-    <p class="card-text">
-      <strong>Honorarios:</strong>
-      <span class="text-success">{{ profesional.honorarios | currency }}</span>
-    </p>
-    <p class="card-text" *ngIf="profesional.experiencia">
-      <strong>Experiencia:</strong>
-      <span>{{ profesional.experiencia }}</span>
-    </p>
-    <p class="card-text" *ngIf="profesional.correo">
-      <strong>Correo:</strong>
-      <span>{{ profesional.correo }}</span>
-    </p>
-    <p class="card-text" *ngIf="profesional.ubicacion">
-      <strong>Ubicación:</strong>
-      <span>{{ profesional.ubicacion }}</span>
-    </p>
+<!-- Si hay profesional seleccionado, muestra los detalles en pantalla completa -->
+<div *ngIf="profesional" class="detail-container">
+  <div class="detail-header">
+    <div class="profile-section">
+      <img [src]="profesional.imagen" alt="{{ profesional.nombre }}" class="profile-pic" />
+      <h2 class="profile-name">{{ profesional.nombre | nombrePropio }}</h2>
+    </div>
+    <div class="historial" *ngIf="profesional.historial">
+      <h3>Historial Profesional</h3>
+      <p>{{ profesional.historial }}</p>
+    </div>
+  </div>
+  <div class="detail-body">
+    <div class="info-grid">
+      <div class="info-item"><strong>Especialidad:</strong> <span>{{ profesional.especialidad }}</span></div>
+      <div class="info-item"><strong>Honorarios:</strong> <span>{{ profesional.honorarios | currency }}</span></div>
+      <div class="info-item" *ngIf="profesional.experiencia"><strong>Experiencia:</strong> <span>{{ profesional.experiencia }}</span></div>
+      <div class="info-item" *ngIf="profesional.correo"><strong>Correo:</strong> <span>{{ profesional.correo }}</span></div>
+      <div class="info-item" *ngIf="profesional.telefono"><strong>Teléfono:</strong> <span>{{ profesional.telefono }}</span></div>
+      <div class="info-item" *ngIf="profesional.ubicacion"><strong>Ubicación:</strong> <span>{{ profesional.ubicacion }}</span></div>
+    </div>
   </div>
 </div>

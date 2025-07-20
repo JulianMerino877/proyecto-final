@@ -1,61 +1,88 @@
 .perfil-container {
-  background: #f7f9fb;
+  position: relative;
+  background: #ffffff;
   border-radius: 16px;
-  padding: 36px 28px;
-  max-width: 420px;
-  margin: 48px auto;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  padding: 2rem 2rem 3rem;
+  max-width: 400px;
+  margin: 3rem auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.perfil-container h2 {
-  color: #4f5bd5;
-  margin-bottom: 18px;
-  font-size: 1.5rem;
+
+/* Lìnea de acento en la parte superior */
+.perfil-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #1976d2, #4f5bd5);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
+
+.perfil-container h2 {
+  margin-top: 0.5rem;
+  color: #333;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
 .perfil-info {
+  background: #f0f4f8;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 12px;
+  gap: 1rem;
+  width: 100%;
+  margin: 1.5rem 0;
 }
+
 .perfil-icon {
-  font-size: 2.2rem;
-  color: #ffd200;
-  background: #4f5bd5;
+  font-size: 2.5rem;
+  color: #ffffff;
+  background: #1976d2;
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
+
 .perfil-email {
-  color: #222;
-  font-size: 1.1rem;
-  margin-bottom: 2px;
+  color: #444;
+  font-size: 1.25rem;
+  margin: 0;
 }
+
+.perfil-info p {
+  margin: 0.2rem 0;
+  color: #555;
+}
+
 .perfil-logout {
-  margin-top: 18px;
-  background: #ffd200;
-  color: #4f5bd5;
+  margin-top: auto;
+  background: linear-gradient(135deg, #1976d2, #4f5bd5);
+  color: #ffffff;
   border: none;
   border-radius: 8px;
-  padding: 10px 28px;
-  font-size: 1.1rem;
-  font-weight: bold;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: opacity 0.3s, transform 0.2s;
 }
 .perfil-logout:hover {
-  background: #4f5bd5;
-  color: #ffd200;
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
+
 hr {
-  width: 100%;
-  border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 18px 0 0 0;
+  display: none;
 }

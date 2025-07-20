@@ -8,5 +8,7 @@ export const environment = {
   storageBucket: "julian-619f1.firebasestorage.app",
   messagingSenderId: "1002386538569",
   appId: "1:1002386538569:web:742fad0153e798d5ef3f98"
-  }
+  },
+  // Email de administrador para control de acceso
+  adminEmail: '1011420231@unajma.edu.pe'
 };

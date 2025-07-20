@@ -1,8 +1,11 @@
-
-  <div class="bienvenida-contenido">
+<div class="bienvenida-contenido">
     <h1>¡Bienvenido al Directorio de Profesionales!</h1>
     <p>
       Encuentra fácilmente a los mejores especialistas en distintas áreas.<br>
       Haz clic en el iniciar sesión para explorar los profesionales destacados y contactarlos.
     </p>
+    <div *ngIf="!(authService.authState$ | async)" class="botones-inicio">
+      <button routerLink="/login" class="btn-primary">Iniciar sesión</button>
+      <button routerLink="/register" class="btn-secondary">Registrarse</button>
+    </div>
   </div>

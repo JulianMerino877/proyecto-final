@@ -1,6 +1,4 @@
-
-<!-- Aquí va tu buscador y la lista -->
-<app-header></app-header>
-<div class="container">
+<app-header *ngIf="!isLoginPage"></app-header>
+<div [ngClass]="isLoginPage ? 'login-wrapper' : 'container'">
   <router-outlet></router-outlet>
 </div>

@@ -1,0 +1,29 @@
+<div class="admin-container">
+  <h2>Panel de Administrador</h2>
+  <div *ngIf="profesionales.length; else sinDatos">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Especialidad</th>
+          <th>Publicado Por</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prof of profesionales">
+          <td>{{ prof.nombre }}</td>
+          <td>{{ prof.especialidad }}</td>
+          <td>{{ prof.createdBy || 'Desconocido' }}</td>
+          <td>
+            <button class="btn-edit" (click)="editNombre(prof)">Editar Nombre</button>
+            <button class="btn-delete" (click)="deleteProfesional(prof.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #sinDatos>
+    <p class="no-data">No hay profesionales registrados.</p>
+  </ng-template>
+</div>

@@ -64,16 +64,40 @@
   background: transparent;
   box-shadow: none;
   position: relative;
+  overflow: hidden;
 }
 
-.main-nav a.active-link, .main-nav a:focus, .main-nav a:hover {
-  background: transparent;
-  color: #ffd200;
-  font-weight: bold;
+/* Línea animada al pasar y en activo */
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #ffd200;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active-link::after,
+.main-nav a:focus::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Sustituir cambio de color por efecto de escala y quitar fondo */
+.main-nav a.active-link,
+.main-nav a:focus,
+.main-nav a:hover {
+  background: none;
+  color: #fff;
+  transform: scale(1.05);
+  font-weight: 600;
   outline: none;
   box-shadow: none;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.10);
-  transition: color 0.2s;
+  text-shadow: none;
+  transition: transform 0.2s;
 }
 
 .nav-icon {
@@ -94,6 +118,27 @@
   background: #fff;
   border-radius: 10px;
 }
+
+/* Estilo alternativo para navegación tipo píldora */
+.main-nav a::after {
+  display: none !important;
+}
+.main-nav a {
+  background: transparent;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 8px 16px;
+  transition: background 0.3s, color 0.3s;
+}
+.main-nav a:hover {
+  background: rgba(255,255,255,0.3);
+  /* mantiene color blanco */
+ }
+
+ .main-nav a.active-link {
+  background: transparent;
+  /* mantiene color blanco */
+ }
 
 @media (max-width: 900px) {
   .main-header {

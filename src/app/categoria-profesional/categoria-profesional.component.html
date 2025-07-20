@@ -2,8 +2,8 @@
 <div class="categorias-grid">
   <div *ngFor="let categoria of categorias | keyvalue" class="categoria-card-color" (click)="irACategoria(categoria.key)">
     <div class="icono-categoria">
-      <img [src]="getIconoCategoria(categoria.key)" alt="icono {{categoria.key}}" />
+    <img [src]="getIconoCategoria(categoria.key)" alt="icono {{categoria.key}}" width="120" height="120" />
     </div>
-    <div class="nombre-categoria">{{ categoria.key }}</div>
+    <div class="nombre-categoria">{{ categoria.key | pluralCategoria }}</div>
   </div>
 </div>

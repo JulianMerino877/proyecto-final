@@ -30,9 +30,9 @@
 }
 form {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 label {
   font-weight: 500;
@@ -76,4 +76,109 @@ label {
   color: #388e3c;
   margin-top: 12px;
   font-weight: bold;
+}
+
+/* Estilos de la tarjeta principal */
+.add-professional {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.add-professional .card-header {
+  background: #1976d2;
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+}
+
+.add-professional .card-body {
+  padding: 1.5rem;
+}
+
+/* Grid para el formulario */
+.form-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-grid .full-width {
+  grid-column: span 2;
+}
+
+.upload-group {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preview-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #cccccc;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+.form-actions {
+  grid-column: span 2;
+  text-align: center;
+}
+
+.btn-primary {
+  background: #1976d2;
+  color: #ffffff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background: #1256a3;
+}
+
+.alert-success {
+  background: #e8f5e9;
+  border-left: 4px solid #388e3c;
+  color: #2e7d32;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border-radius: 0.25rem;
+}
+
+/* Elementos que deben ocupar todo el ancho (dos columnas) */
+form input[type="file"],
+form img,
+form button,
+form textarea {
+  grid-column: 1 / -1;
 }
