@@ -25,4 +25,12 @@ export class LoginComponent {
       error: err => this.error = err.message
     });
   }
+
+  /** Inicia sesión con Google */
+  googleLogin() {
+    this.authService.googleSignIn().subscribe({
+      next: () => this.router.navigate(['/']),
+      error: err => this.error = err.message
+    });
+  }
 }

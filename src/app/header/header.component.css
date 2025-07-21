@@ -136,7 +136,8 @@
  }
 
  .main-nav a.active-link {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.3);
+
   /* mantiene color blanco */
  }
 

@@ -4,6 +4,12 @@
     <input type="email" [(ngModel)]="email" name="email" placeholder="Correo" required />
     <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required />
     <button type="submit">Entrar</button>
+    <!-- Botón de Google Sign-In -->
+    <button type="button" (click)="googleLogin()" class="btn-google">
+      <!-- Embed SVG inline para mantener calidad vectorial -->
+      <object data="icons/logo1.svg" type="image/svg+xml" class="google-icon"></object>
+      Entrar con Google
+    </button>
     <div *ngIf="error" class="error">{{ error }}</div>
   </form>
   <p>¿No tienes cuenta? <a [routerLink]="['/register']">Regístrate aquí</a></p>
