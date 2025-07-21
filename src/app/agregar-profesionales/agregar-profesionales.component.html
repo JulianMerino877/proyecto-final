@@ -1,35 +1,61 @@
-<div class="formulario-container">
-  <h2>Agregar Profesional</h2>
-  <form (ngSubmit)="agregarProfesional()" #form="ngForm">
-    <label for="imagen">Foto:</label>
-    <input type="file" id="imagen" (change)="onFileChange($event)" accept="image/jpeg, image/png">
-    <img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa" style="max-width: 120px; display: block; margin-top: 8px;" />
+<div class="add-professional">
+  <div class="card-header">
+    <h2>Agregar Profesional</h2>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="agregarProfesional()" #addForm="ngForm" class="form-grid">
+      <div class="upload-group">
+        <label for="imagen">Foto:</label>
+        <input type="file" id="imagen" (change)="onFileChange($event)" accept="image/jpeg, image/png" />
+        <img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa" class="preview-img" />
+      </div>
 
-    <label>Nombre:</label>
-    <input type="text" [(ngModel)]="nuevoProfesional.nombre" name="nombre" required class="form-input" />
+      <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="nuevoProfesional.nombre" name="nombre" required class="form-input" />
+      </div>
 
-    <label>Especialidad:</label>
-    <input type="text" [(ngModel)]="nuevoProfesional.especialidad" name="especialidad" required class="form-input" />
+      <div class="form-group">
+        <label>Especialidad:</label>
+        <input type="text" [(ngModel)]="nuevoProfesional.especialidad" name="especialidad" required class="form-input" />
+      </div>
 
-    <label>Honorarios:</label>
-    <input type="number" [(ngModel)]="nuevoProfesional.honorarios" name="honorarios" required class="form-input" />
+      <div class="form-group">
+        <label>Honorarios:</label>
+        <input type="number" [(ngModel)]="nuevoProfesional.honorarios" name="honorarios" required class="form-input" />
+      </div>
 
-    <label>Experiencia:</label>
-    <input type="text" [(ngModel)]="nuevoProfesional.experiencia" name="experiencia" class="form-input" />
+      <div class="form-group full-width">
+        <label>Experiencia:</label>
+        <input type="text" [(ngModel)]="nuevoProfesional.experiencia" name="experiencia" class="form-input" />
+      </div>
 
-    <label>Historial:</label>
-    <textarea [(ngModel)]="nuevoProfesional.historial" name="historial" class="form-input" placeholder="Describe su historial" rows="4"></textarea>
+      <div class="form-group full-width">
+        <label>Historial:</label>
+        <textarea [(ngModel)]="nuevoProfesional.historial" name="historial" class="form-input" placeholder="Describe su historial" rows="4"></textarea>
+      </div>
 
-    <label>Correo:</label>
-    <input type="email" [(ngModel)]="nuevoProfesional.correo" name="correo" class="form-input" />
+      <div class="form-group">
+        <label>Correo:</label>
+        <input type="email" [(ngModel)]="nuevoProfesional.correo" name="correo" class="form-input" />
+      </div>
 
-    <label>Ubicación:</label>
-    <input type="text" [(ngModel)]="nuevoProfesional.ubicacion" name="ubicacion" class="form-input" />
+      <div class="form-group">
+        <label>Ubicación:</label>
+        <input type="text" [(ngModel)]="nuevoProfesional.ubicacion" name="ubicacion" class="form-input" />
+      </div>
 
-    <label>Teléfono:</label>
-    <input type="tel" [(ngModel)]="nuevoProfesional.telefono" name="telefono" class="form-input" placeholder="Ej: 51999999999" required />
+      <div class="form-group">
+        <label>Teléfono:</label>
+        <input type="tel" [(ngModel)]="nuevoProfesional.telefono" name="telefono" class="form-input" placeholder="Ej: 51999999999" required />
+      </div>
 
-    <button type="submit" class="btn-enviar">Agregar</button>
-  </form>
-  <div *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</div>
+      <div class="form-actions full-width">
+        <button type="submit" class="btn-primary">Agregar</button>
+      </div>
+    </form>
+
+    <div *ngIf="mensaje" class="alert-success">{{ mensaje }}</div>
+    <div *ngIf="errorMessage" class="mensaje-error">{{ errorMessage }}</div>
+  </div>
 </div>

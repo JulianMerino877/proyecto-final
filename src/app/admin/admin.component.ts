@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { profesionalService } from '../services/profesional.service';
 import { AuthService } from '../services/auth.service';
 import { authGuard } from '../guards/auth.guard';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
   profesionales: any[] = [];
+  editingProf: any = null;
+  deletingProf: any = null;
 
   constructor(
     private profesionalService: profesionalService,
@@ -29,18 +33,45 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  async deleteProfesional(id: string) {
-    if (confirm('¿Estás seguro de eliminar este profesional?')) {
-      await this.profesionalService.deleteProfesional(id);
+  startDelete(prof: any) {
+    this.deletingProf = prof;
+    this.editingProf = null;
+  }
+
+  cancelDelete() {
+    this.deletingProf = null;
+  }
+
+  async confirmDelete() {
+    if (this.deletingProf) {
+      await this.profesionalService.deleteProfesional(this.deletingProf.id);
       this.loadProfesionales();
+      this.deletingProf = null;
     }
   }
 
-  async editNombre(prof: any) {
-    const nuevo = prompt('Editar nombre:', prof.nombre);
-    if (nuevo !== null && nuevo.trim() !== '') {
-      await this.profesionalService.updateProfesional(prof.id, { nombre: nuevo });
+  startEdit(prof: any) {
+    this.editingProf = { ...prof };
+    this.deletingProf = null;
+  }
+
+  cancelEdit() {
+    this.editingProf = null;
+  }
+
+  async saveEdit() {
+    if (this.editingProf) {
+      await this.profesionalService.updateProfesional(
+        this.editingProf.id,
+        {
+          nombre: this.editingProf.nombre,
+          especialidad: this.editingProf.especialidad,
+          honorarios: this.editingProf.honorarios,
+          telefono: this.editingProf.telefono
+        }
+      );
       this.loadProfesionales();
+      this.editingProf = null;
     }
   }
 }

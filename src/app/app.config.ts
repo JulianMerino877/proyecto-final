@@ -13,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()), provideFirebaseApp(() => initializeApp({ projectId: "julianjm-d2b81", appId: "1:636208725572:web:54cbae104890c38a8fc611", storageBucket: "julianjm-d2b81.firebasestorage.app", apiKey: "AIzaSyAOszS5iZPSzmAP3V_X3VlFey7FOyOvzCQ", authDomain: "julianjm-d2b81.firebaseapp.com", messagingSenderId: "636208725572", measurementId: "G-G0984EFSBG" })), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())
   ]
 };

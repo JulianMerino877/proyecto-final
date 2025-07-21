@@ -25,6 +25,7 @@ export class AgregarProfesionalesComponent {
   };
   imagenPreview: string | ArrayBuffer | null = null;
   mensaje: string = '';
+  errorMessage: string = '';
 
   constructor(private profesionalService: profesionalService, private authService: AuthService) {}
 
@@ -71,27 +72,29 @@ export class AgregarProfesionalesComponent {
   }
 
   async agregarProfesional() {
-    // Si no hay imagen, poner una por defecto
-    if (!this.nuevoProfesional.imagen) {
-      this.nuevoProfesional.imagen = 'icons/default.png';
+    try {
+      // Agregar campo createdBy con el email del usuario
+      const createdBy = this.authService.currentUser?.email || 'anónimo';
+      // Guardar en Firestore
+      await this.profesionalService.addProfesional({ ...this.nuevoProfesional, createdBy });
+      this.mensaje = '¡Profesional agregado exitosamente!';
+      this.errorMessage = '';
+      // Limpiar formulario
+      this.nuevoProfesional = {
+        nombre: '',
+        especialidad: '',
+        honorarios: null,
+        imagen: '',
+        experiencia: '',
+        historial: '',
+        correo: '',
+        telefono: '',
+        ubicacion: ''
+      };
+      this.imagenPreview = null;
+    } catch (err: any) {
+      console.error('Error al agregar profesional:', err);
+      this.errorMessage = err.message || 'Error al agregar profesional';
     }
-    // Agregar campo createdBy con el email del usuario
-    const createdBy = this.authService.currentUser?.email || 'anónimo';
-    // Guardar en Firestore
-    await this.profesionalService.addProfesional({ ...this.nuevoProfesional, createdBy });
-    this.mensaje = '¡Profesional agregado exitosamente!';
-    // Limpiar formulario
-    this.nuevoProfesional = {
-      nombre: '',
-      especialidad: '',
-      honorarios: null,
-      imagen: '',
-      experiencia: '',
-      historial: '',
-      correo: '',
-      telefono: '',
-      ubicacion: ''
-    };
-    this.imagenPreview = null;
   }
 }
