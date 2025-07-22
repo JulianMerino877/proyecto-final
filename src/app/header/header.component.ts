@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   profesionales: any[] = [];
   public adminEmail = environment.adminEmail;
 
+  menuOpen = false;
   constructor(
     private profesionalService: profesionalService,
     public authService: AuthService,
@@ -32,5 +33,9 @@ export class HeaderComponent implements OnInit {
     this.authService.logout().subscribe(() => {
       this.router.navigate(['/login']);
     });
+  }
+  
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
   }
 }
