@@ -3,7 +3,8 @@
   
   <h2>Panel de Administrador</h2>
   <div *ngIf="profesionales.length; else sinDatos">
-    <table class="admin-table">
+    <!-- Edición en tabla separada -->
+    <table *ngIf="editingProf" class="admin-table">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -14,41 +15,64 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let prof of profesionales">
-          <!-- Formulario de edición completo -->
-          <tr *ngIf="editingProf?.id === prof.id">
-            <td><input [(ngModel)]="editingProf.nombre" name="nombre" /></td>
-            <td><input [(ngModel)]="editingProf.especialidad" name="especialidad" /></td>
-            <td><input [(ngModel)]="editingProf.telefono" name="telefono" /></td>
-            <td>{{ editingProf.createdBy || 'Desconocido' }}</td>
-            <td>
-              <button class="btn-save" (click)="saveEdit()">Guardar</button>
-              <button class="btn-cancel" (click)="cancelEdit()">Cancelar</button>
-            </td>
-          </tr>
-          <!-- Fila de confirmación de eliminación -->
-          <tr *ngIf="deletingProf?.id === prof.id">
-            <td>{{ prof.nombre }}</td>
-            <td>{{ prof.especialidad }}</td>
-            <td>{{ prof.telefono || '—' }}</td>
-            <td>{{ prof.createdBy || 'Desconocido' }}</td>
-            <td>
-              <button class="btn-confirm-delete" (click)="confirmDelete()">Confirmar Eliminación</button>
-              <button class="btn-cancel" (click)="cancelDelete()">Cancelar</button>
-            </td>
-          </tr>
-          <!-- Fila normal -->
-          <tr *ngIf="editingProf?.id !== prof.id && deletingProf?.id !== prof.id">
-            <td>{{ prof.nombre }}</td>
-            <td>{{ prof.especialidad }}</td>
-            <td>{{ prof.telefono || '—' }}</td>
-            <td>{{ prof.createdBy || 'Desconocido' }}</td>
-            <td>
-              <button class="btn-edit" (click)="startEdit(prof)">Editar</button>
-              <button class="btn-delete" (click)="startDelete(prof)">Eliminar</button>
-            </td>
-          </tr>
-        </ng-container>
+        <tr>
+          <td><input [(ngModel)]="editingProf.nombre" name="nombre" /></td>
+          <td><input [(ngModel)]="editingProf.especialidad" name="especialidad" /></td>
+          <td><input [(ngModel)]="editingProf.telefono" name="telefono" /></td>
+          <td>{{ editingProf.createdBy || 'Desconocido' }}</td>
+          <td>
+            <button class="btn-save" (click)="saveEdit()">Guardar</button>
+            <button class="btn-cancel" (click)="cancelEdit()">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Confirmación de eliminación en tabla separada -->
+    <table *ngIf="deletingProf" class="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Especialidad</th>
+          <th>Teléfono</th>
+          <th>Publicado Por</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ deletingProf.nombre }}</td>
+          <td>{{ deletingProf.especialidad }}</td>
+          <td>{{ deletingProf.telefono || '—' }}</td>
+          <td>{{ deletingProf.createdBy || 'Desconocido' }}</td>
+          <td>
+            <button class="btn-confirm-delete" (click)="confirmDelete()">Confirmar Eliminación</button>
+            <button class="btn-cancel" (click)="cancelDelete()">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Tabla principal cuando no hay edición ni eliminación -->
+    <table *ngIf="!editingProf && !deletingProf" class="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Especialidad</th>
+          <th>Teléfono</th>
+          <th>Publicado Por</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prof of profesionales">
+          <td>{{ prof.nombre }}</td>
+          <td>{{ prof.especialidad }}</td>
+          <td>{{ prof.telefono || '—' }}</td>
+          <td>{{ prof.createdBy || 'Desconocido' }}</td>
+          <td>
+            <button class="btn-edit" (click)="startEdit(prof)">Editar</button>
+            <button class="btn-delete" (click)="startDelete(prof)">Eliminar</button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

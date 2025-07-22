@@ -14,7 +14,7 @@ import { NombrePropioPipe } from '../nombre-propio.pipe';
 })
 export class DestacadosComponent {
   destacados: any[] = [];
-  minHonorarios = 1000;
+  minHonorarios = 2500;
 
   constructor(private profesionalService: profesionalService) {
     this.cargarDestacados();
