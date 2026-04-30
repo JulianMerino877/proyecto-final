@@ -37,7 +37,7 @@ ng serve --open
   - `AuthGuard`: protege rutas de administración (creación/edición).  
 
 ## 🌐 URLs de despliegue 
-- Hosting Firebase: https://julianjm-d2b81.web.app  
+- Hosting Firebase: 
  
 
 ## 🎬 Contenido del video 
